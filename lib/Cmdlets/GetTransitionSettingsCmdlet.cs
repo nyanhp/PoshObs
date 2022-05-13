@@ -4,11 +4,11 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POGetTransitionSettings")]
+    [Cmdlet(VerbsCommon.Get, "POTransitionSettings")]
     public class GetTransitionSettingsCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string transitionName {get; set;}
+        public string Name { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -19,8 +19,11 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.GetTransitionSettings();
+        protected override void ProcessRecord()
+        {
+            WriteObject(ObsConnection.Instance.Connection.GetTransitionSettings(Name));
         }
     }
 }

@@ -4,10 +4,9 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "PODisableStudioMode")]
+    [Cmdlet(VerbsLifecycle.Disable, "PODStudioMode")]
     public class DisableStudioModeCmdlet : Cmdlet
     {
-
         protected override void BeginProcessing()
         {
             if (!ObsConnection.Instance.Connection.IsConnected)

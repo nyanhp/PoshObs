@@ -1,18 +1,19 @@
 using System;
+using System.Collections;
 using System.Management.Automation;
 using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POSetSourceSettings")]
+    [Cmdlet(VerbsCommon.Set, "POSourceSettings")]
     public class SetSourceSettingsCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string sourceName {get; set;}
-         [Parameter(Mandatory = true)]
-        public Newtonsoft.Json.Linq.JObject settings {get; set;}
-         [Parameter(Mandatory = true)]
-        public string sourceType {get; set;}
+        public string SourceName { get; set; }
+        [Parameter(Mandatory = true)]
+        public Hashtable Settings { get; set; }
+        [Parameter(Mandatory = true)]
+        public string SourceType { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -24,7 +25,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetSourceSettings();
+            ObsConnection.Instance.Connection.SetSourceSettings(SourceName, Newtonsoft.Json.Linq.JObject.FromObject(Settings), SourceType);
         }
     }
 }

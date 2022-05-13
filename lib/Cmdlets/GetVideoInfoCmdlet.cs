@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POGetVideoInfo")]
+    [Cmdlet(VerbsCommon.Get, "POVideoInfo")]
     public class GetVideoInfoCmdlet : Cmdlet
     {
 
@@ -17,8 +17,11 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.GetVideoInfo();
+        protected override void ProcessRecord()
+        {
+            WriteObject(ObsConnection.Instance.Connection.GetVideoInfo());
         }
     }
 }

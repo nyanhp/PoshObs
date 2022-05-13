@@ -4,15 +4,15 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POSetVolume")]
+    [Cmdlet(VerbsCommon.Set, "POVolume")]
     public class SetVolumeCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string sourceName {get; set;}
-         [Parameter(Mandatory = true)]
-        public float volume {get; set;}
-         [Parameter(Mandatory = true)]
-        public bool useDecibel {get; set;}
+        public string Name { get; set; }
+        [Parameter(Mandatory = true)]
+        public float Volume { get; set; }
+        [Parameter(Mandatory = true)]
+        public bool UseDecibel { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -24,7 +24,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetVolume();
+            ObsConnection.Instance.Connection.SetVolume(Name, Volume, UseDecibel);
         }
     }
 }

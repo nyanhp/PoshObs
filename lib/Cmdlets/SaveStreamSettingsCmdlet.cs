@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POSaveStreamSettings")]
+    [Cmdlet(VerbsData.Save, "POStreamSettings")]
     public class SaveStreamSettingsCmdlet : Cmdlet
     {
 

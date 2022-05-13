@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POGetFilenameFormatting")]
+    [Cmdlet(VerbsCommon.Get, "POFilenameFormatting")]
     public class GetFilenameFormattingCmdlet : Cmdlet
     {
 
@@ -17,8 +17,11 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.GetFilenameFormatting();
+        protected override void ProcessRecord()
+        {
+            WriteObject(ObsConnection.Instance.Connection.GetFilenameFormatting());
         }
     }
 }

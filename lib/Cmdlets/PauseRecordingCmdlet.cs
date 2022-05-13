@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POPauseRecording")]
+    [Cmdlet(VerbsLifecycle.Suspend, "PORecording")]
     public class PauseRecordingCmdlet : Cmdlet
     {
 

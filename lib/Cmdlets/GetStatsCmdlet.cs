@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POGetStats")]
+    [Cmdlet(VerbsCommon.Get, "POStatistic")]
     public class GetStatsCmdlet : Cmdlet
     {
 
@@ -17,8 +17,11 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.GetStats();
+        protected override void ProcessRecord()
+        {
+            WriteObject(ObsConnection.Instance.Connection.GetStats());
         }
     }
 }

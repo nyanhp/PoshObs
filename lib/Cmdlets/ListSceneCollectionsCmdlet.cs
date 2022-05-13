@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POListSceneCollections")]
+    [Cmdlet(VerbsCommon.Get, "POSceneCollection")]
     public class ListSceneCollectionsCmdlet : Cmdlet
     {
 
@@ -17,8 +17,11 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.ListSceneCollections();
+        protected override void ProcessRecord()
+        {
+            WriteObject(ObsConnection.Instance.Connection.ListSceneCollections());
         }
     }
 }

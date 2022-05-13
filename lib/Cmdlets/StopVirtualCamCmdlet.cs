@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POStopVirtualCam")]
+    [Cmdlet(VerbsLifecycle.Stop, "POVirtualCam")]
     public class StopVirtualCamCmdlet : Cmdlet
     {
 

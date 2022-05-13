@@ -4,13 +4,13 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POSetAudioMonitorType")]
+    [Cmdlet(VerbsCommon.Set, "POAudioMonitorType")]
     public class SetAudioMonitorTypeCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string sourceName {get; set;}
+        public string Name {get; set;}
          [Parameter(Mandatory = true)]
-        public string monitorType {get; set;}
+        public string Type {get; set;}
 
         protected override void BeginProcessing()
         {
@@ -22,7 +22,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetAudioMonitorType();
+            ObsConnection.Instance.Connection.SetAudioMonitorType(Name, Type);
         }
     }
 }

@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POGetStreamSettings")]
+    [Cmdlet(VerbsCommon.Get, "POStreamSettings")]
     public class GetStreamSettingsCmdlet : Cmdlet
     {
 
@@ -17,8 +17,11 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.GetStreamSettings();
+        protected override void ProcessRecord()
+        {
+            WriteObject(ObsConnection.Instance.Connection.GetStreamSettings());
         }
     }
 }

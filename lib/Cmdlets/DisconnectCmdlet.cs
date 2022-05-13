@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "PODisconnect")]
+    [Cmdlet(VerbsCommunications.Disconnect, "POWebSocket")]
     public class DisconnectCmdlet : Cmdlet
     {
 
@@ -12,9 +12,7 @@ namespace PoshObsNet.Cmdlets
         {
             if (!ObsConnection.Instance.Connection.IsConnected)
             {
-                var exception = new System.Net.Http.HttpRequestException($"OBS WebSocket not connected");
-                var record = new ErrorRecord(exception, "ObsWebSocketConnectError", ErrorCategory.ConnectionError, ObsConnection.Instance);
-                WriteError(record);
+                WriteVerbose("Already disconnected");
                 return;
             }
 

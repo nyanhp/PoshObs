@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POStartReplayBuffer")]
+    [Cmdlet(VerbsLifecycle.Start, "POReplayBuffer")]
     public class StartReplayBufferCmdlet : Cmdlet
     {
 

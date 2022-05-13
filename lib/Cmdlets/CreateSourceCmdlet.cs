@@ -1,22 +1,23 @@
 using System;
+using System.Collections;
 using System.Management.Automation;
 using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POCreateSource")]
+    [Cmdlet(VerbsCommon.New, "POSource")]
     public class CreateSourceCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string sourceName {get; set;}
-         [Parameter(Mandatory = true)]
-        public string sourceKind {get; set;}
-         [Parameter(Mandatory = true)]
-        public string sceneName {get; set;}
-         [Parameter(Mandatory = true)]
-        public Newtonsoft.Json.Linq.JObject sourceSettings {get; set;}
-         [Parameter(Mandatory = true)]
-        public System.Nullable[bool] setVisible {get; set;}
+        public string Name { get; set; }
+        [Parameter(Mandatory = true)]
+        public string Kind { get; set; }
+        [Parameter(Mandatory = true)]
+        public string SceneName { get; set; }
+        [Parameter(Mandatory = true)]
+        public Hashtable Settings { get; set; }
+        [Parameter(Mandatory = true)]
+        bool Visible { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -28,7 +29,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.CreateSource();
+            ObsConnection.Instance.Connection.CreateSource(Name, Kind, SceneName, Newtonsoft.Json.Linq.JObject.FromObject(Settings), Visible);
         }
     }
 }

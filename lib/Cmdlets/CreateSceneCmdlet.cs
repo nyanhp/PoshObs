@@ -4,11 +4,11 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POCreateScene")]
+    [Cmdlet(VerbsCommon.New, "POScene")]
     public class CreateSceneCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string sceneName {get; set;}
+        public string Name { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -20,7 +20,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.CreateScene();
+            ObsConnection.Instance.Connection.CreateScene(Name);
         }
     }
 }

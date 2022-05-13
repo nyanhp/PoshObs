@@ -4,15 +4,13 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POTakeSourceScreenshot")]
+    [Cmdlet(VerbsData.Save, "POSourceScreenshot")]
     public class TakeSourceScreenshotCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string sourceName {get; set;}
-         [Parameter(Mandatory = true)]
-        public string embedPictureFormat {get; set;}
-         [Parameter(Mandatory = true)]
-        public string saveToFilePath {get; set;}
+        public string Name { get; set; }
+        [Parameter(Mandatory = true)]
+        public string Path { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -24,7 +22,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.TakeSourceScreenshot();
+            ObsConnection.Instance.Connection.TakeSourceScreenshot(Name, null, Path);
         }
     }
 }

@@ -9,13 +9,13 @@ namespace PoshObsNet.Cmdlets
     public class AddFilterToSourceCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string SourceName {get; set;}
+        public string SourceName { get; set; }
         [Parameter(Mandatory = true)]
-        public string Name {get; set;}
+        public string Name { get; set; }
         [Parameter(Mandatory = true)]
-        public string Type {get; set;}
+        public string Type { get; set; }
         [Parameter(Mandatory = true)]
-        public Hashtable Settings {get; set;}
+        public Hashtable Settings { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -27,7 +27,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.AddFilterToSource();
+            ObsConnection.Instance.Connection.AddFilterToSource(SourceName, Name, Type, Newtonsoft.Json.Linq.JObject.FromObject(Settings));
         }
     }
 }

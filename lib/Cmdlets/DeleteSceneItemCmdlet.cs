@@ -4,13 +4,13 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "PODeleteSceneItem")]
+    [Cmdlet(VerbsCommon.Remove, "POSceneItem")]
     public class DeleteSceneItemCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public int sceneItemId {get; set;}
-         [Parameter(Mandatory = true)]
-        public string sceneName {get; set;}
+        public int ItemId { get; set; }
+        [Parameter(Mandatory = true)]
+        public string SceneName { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -22,7 +22,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.DeleteSceneItem();
+            ObsConnection.Instance.Connection.DeleteSceneItem(ItemId, SceneName);
         }
     }
 }

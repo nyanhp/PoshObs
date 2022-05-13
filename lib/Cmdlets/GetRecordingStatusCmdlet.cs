@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POGetRecordingStatus")]
+    [Cmdlet(VerbsCommon.Get, "PORecordingStatus")]
     public class GetRecordingStatusCmdlet : Cmdlet
     {
 
@@ -17,8 +17,12 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.GetRecordingStatus();
+        protected override void ProcessRecord()
+        {
+
+            WriteObject(ObsConnection.Instance.Connection.GetRecordingStatus());
         }
     }
 }

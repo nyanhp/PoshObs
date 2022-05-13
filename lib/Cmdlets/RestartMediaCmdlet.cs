@@ -4,11 +4,11 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "PORestartMedia")]
+    [Cmdlet(VerbsLifecycle.Restart, "POMedia")]
     public class RestartMediaCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string sourceName {get; set;}
+        public string Name { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -20,7 +20,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.RestartMedia();
+            ObsConnection.Instance.Connection.RestartMedia(Name);
         }
     }
 }

@@ -4,17 +4,21 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POOpenProjector")]
+    [Cmdlet(VerbsCommon.Open, "POProjector")]
     public class OpenProjectorCmdlet : Cmdlet
     {
-        [Parameter(Mandatory = true)]
-        public string projectorType {get; set;}
-         [Parameter(Mandatory = true)]
-        public int monitor {get; set;}
-         [Parameter(Mandatory = true)]
-        public string geometry {get; set;}
-         [Parameter(Mandatory = true)]
-        public string name {get; set;}
+        private string type = "Preview";
+        private int monitor = -1;
+
+        [Parameter()]
+        [ValidateSet("Preview", "Source", "Scene", "StudioProgram", "Multiview")]
+        public string Type { get => type; set => type = value; }
+        [Parameter()]
+        public int Monitor { get => monitor; set => monitor = value; }
+        [Parameter()]
+        public string Geometry { get; set; }
+        [Parameter()]
+        public string Name { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -26,7 +30,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.OpenProjector();
+            ObsConnection.Instance.Connection.OpenProjector(Type, Monitor, Geometry, Name);
         }
     }
 }

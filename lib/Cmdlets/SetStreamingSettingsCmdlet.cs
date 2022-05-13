@@ -4,13 +4,13 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POSetStreamingSettings")]
+    [Cmdlet(VerbsCommon.Set, "POStreamingSettings")]
     public class SetStreamingSettingsCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public OBSWebsocketDotNet.Types.StreamingService service {get; set;}
-         [Parameter(Mandatory = true)]
-        public bool save {get; set;}
+        public OBSWebsocketDotNet.Types.StreamingService Service { get; set; }
+        [Parameter(Mandatory = true)]
+        public SwitchParameter Save { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -22,7 +22,8 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetStreamingSettings();
+            ObsConnection.Instance.Connection.SetStreamingSettings(Service, Save.IsPresent);
+            ObsConnection.Instance.Connection.SetStreamSettings(Service, Save); // Docs say its the same
         }
     }
 }

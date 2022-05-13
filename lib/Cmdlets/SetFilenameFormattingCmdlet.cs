@@ -4,11 +4,11 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POSetFilenameFormatting")]
+    [Cmdlet(VerbsCommon.Set, "POFilenameFormatting")]
     public class SetFilenameFormattingCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string filenameFormatting {get; set;}
+        public string FilenameFormatting {get; set;}
 
         protected override void BeginProcessing()
         {
@@ -20,7 +20,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetFilenameFormatting();
+            ObsConnection.Instance.Connection.SetFilenameFormatting(FilenameFormatting);
         }
     }
 }

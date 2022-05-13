@@ -4,13 +4,13 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POReorderSceneItems")]
+    [Cmdlet(VerbsCommon.Set, "POSceneItemOrder")]
     public class ReorderSceneItemsCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public System.Collections.Generic.List[OBSWebsocketDotNet.Types.SceneItemStub] sceneItems {get; set;}
-         [Parameter(Mandatory = true)]
-        public string sceneName {get; set;}
+        public System.Collections.Generic.List<OBSWebsocketDotNet.Types.SceneItemStub> SceneItem { get; set; }
+        [Parameter(Mandatory = true)]
+        public string Name { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -22,7 +22,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.ReorderSceneItems();
+            ObsConnection.Instance.Connection.ReorderSceneItems(SceneItem, Name);
         }
     }
 }

@@ -4,15 +4,15 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POSetSourceFilterVisibility")]
+    [Cmdlet(VerbsCommon.Set, "POSourceFilterVisibility")]
     public class SetSourceFilterVisibilityCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string sourceName {get; set;}
-         [Parameter(Mandatory = true)]
-        public string filterName {get; set;}
-         [Parameter(Mandatory = true)]
-        public bool filterEnabled {get; set;}
+        public string Name { get; set; }
+        [Parameter(Mandatory = true)]
+        public string FilterName { get; set; }
+        [Parameter(Mandatory = true)]
+        public SwitchParameter FilterEnabled { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -24,7 +24,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetSourceFilterVisibility();
+            ObsConnection.Instance.Connection.SetSourceFilterVisibility(Name, FilterName, FilterEnabled.IsPresent);
         }
     }
 }

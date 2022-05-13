@@ -4,11 +4,11 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POSetTextGDIPlusProperties")]
+    [Cmdlet(VerbsCommon.Set, "POTextGDIPlusProperties")]
     public class SetTextGDIPlusPropertiesCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public OBSWebsocketDotNet.Types.TextGDIPlusProperties properties {get; set;}
+        public OBSWebsocketDotNet.Types.TextGDIPlusProperties Properties { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -20,7 +20,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetTextGDIPlusProperties();
+            ObsConnection.Instance.Connection.SetTextGDIPlusProperties(Properties);
         }
     }
 }

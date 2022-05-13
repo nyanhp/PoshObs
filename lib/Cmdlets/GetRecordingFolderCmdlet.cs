@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POGetRecordingFolder")]
+    [Cmdlet(VerbsCommon.Get, "PORecordingFolder")]
     public class GetRecordingFolderCmdlet : Cmdlet
     {
 
@@ -17,8 +17,12 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.GetRecordingFolder();
+        protected override void ProcessRecord()
+        {
+
+            WriteObject(ObsConnection.Instance.Connection.GetRecordingFolder());
         }
     }
 }

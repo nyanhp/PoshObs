@@ -4,15 +4,15 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POMoveSourceFilter")]
+    [Cmdlet(VerbsCommon.Move, "POSourceFilter")]
     public class MoveSourceFilterCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string sourceName {get; set;}
-         [Parameter(Mandatory = true)]
-        public string filterName {get; set;}
-         [Parameter(Mandatory = true)]
-        public OBSWebsocketDotNet.Types.FilterMovementType movement {get; set;}
+        public string Name { get; set; }
+        [Parameter(Mandatory = true)]
+        public string FilterName { get; set; }
+        [Parameter(Mandatory = true)]
+        public OBSWebsocketDotNet.Types.FilterMovementType MovementType { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -24,7 +24,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.MoveSourceFilter();
+            ObsConnection.Instance.Connection.MoveSourceFilter(Name, FilterName, MovementType);
         }
     }
 }

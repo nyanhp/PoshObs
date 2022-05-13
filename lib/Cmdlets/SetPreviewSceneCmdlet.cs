@@ -1,14 +1,15 @@
 using System;
 using System.Management.Automation;
 using PoshObsNet.Data;
+using System.Linq;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POSetPreviewScene")]
+    [Cmdlet(VerbsCommon.Set, "POPreviewScene")]
     public class SetPreviewSceneCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public OBSWebsocketDotNet.Types.OBSScene previewScene {get; set;}
+        public string Name { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -20,7 +21,8 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetPreviewScene();
+            var scene = ObsConnection.Instance.Connection.GetSceneList().Scenes.First(sc => sc.Name.Equals(Name));
+            ObsConnection.Instance.Connection.SetPreviewScene(scene);
         }
     }
 }

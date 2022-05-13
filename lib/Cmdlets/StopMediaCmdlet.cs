@@ -4,11 +4,11 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POStopMedia")]
+    [Cmdlet(VerbsLifecycle.Stop, "POMedia")]
     public class StopMediaCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string sourceName {get; set;}
+        public string Name {get; set;}
 
         protected override void BeginProcessing()
         {
@@ -20,7 +20,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.StopMedia();
+            ObsConnection.Instance.Connection.StopMedia(Name);
         }
     }
 }

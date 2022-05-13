@@ -8,7 +8,7 @@ namespace PoshObsNet.Cmdlets
     public class AddSceneItemCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string SceneName { get; set; }
+        public string Name { get; set; }
         [Parameter(Mandatory = true)]
         public string SourceName { get; set; }
         [Parameter(Mandatory = true)]
@@ -24,7 +24,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.AddSceneItem(SceneName, SourceName, Visible);
+            ObsConnection.Instance.Connection.AddSceneItem(Name, SourceName, Visible);
         }
     }
 }

@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POGetPreviewScene")]
+    [Cmdlet(VerbsCommon.Get, "POPreviewScene")]
     public class GetPreviewSceneCmdlet : Cmdlet
     {
 
@@ -17,8 +17,13 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.GetPreviewScene();
+        protected override void ProcessRecord()
+        {
+
+            WriteObject(ObsConnection.Instance.Connection.GetPreviewScene());
+
         }
     }
 }

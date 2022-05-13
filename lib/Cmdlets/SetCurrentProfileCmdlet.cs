@@ -4,11 +4,11 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POSetCurrentProfile")]
+    [Cmdlet(VerbsCommon.Set, "POCurrentProfile")]
     public class SetCurrentProfileCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string profileName {get; set;}
+        public string Name { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -20,7 +20,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetCurrentProfile();
+            ObsConnection.Instance.Connection.SetCurrentProfile(Name);
         }
     }
 }

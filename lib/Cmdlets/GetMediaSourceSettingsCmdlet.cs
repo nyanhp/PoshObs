@@ -4,11 +4,11 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POGetMediaSourceSettings")]
+    [Cmdlet(VerbsCommon.Get, "POMediaSourceSettings")]
     public class GetMediaSourceSettingsCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string sourceName {get; set;}
+        public string Name { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -19,8 +19,11 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.GetMediaSourceSettings();
+        protected override void ProcessRecord()
+        {
+            WriteObject(ObsConnection.Instance.Connection.GetMediaSourceSettings(Name));
         }
     }
 }

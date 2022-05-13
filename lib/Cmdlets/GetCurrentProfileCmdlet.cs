@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POGetCurrentProfile")]
+    [Cmdlet(VerbsCommon.Get, "POCurrentProfile")]
     public class GetCurrentProfileCmdlet : Cmdlet
     {
 

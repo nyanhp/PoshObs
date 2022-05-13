@@ -4,15 +4,17 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "PODuplicateSceneItem")]
+    [Cmdlet(VerbsCommon.Copy, "POSceneItem")]
     public class DuplicateSceneItemCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string fromSceneName {get; set;}
-         [Parameter(Mandatory = true)]
-        public string toSceneName {get; set;}
-         [Parameter(Mandatory = true)]
-        public int sceneItemID {get; set;}
+        [Alias("Source")]
+        public string SourceSceneName { get; set; }
+        [Parameter(Mandatory = true)]
+        [Alias("Destination")]
+        public string DestinationSceneName { get; set; }
+        [Parameter(Mandatory = true)]
+        public int ItemID { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -24,7 +26,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.DuplicateSceneItem();
+            ObsConnection.Instance.Connection.DuplicateSceneItem(SourceSceneName,DestinationSceneName,ItemID);
         }
     }
 }

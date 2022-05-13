@@ -4,10 +4,9 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POGetTransitionDuration")]
+    [Cmdlet(VerbsCommon.Get, "POTransitionDuration")]
     public class GetTransitionDurationCmdlet : Cmdlet
     {
-
         protected override void BeginProcessing()
         {
             if (!ObsConnection.Instance.Connection.IsConnected)
@@ -17,8 +16,11 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.GetTransitionDuration();
+        protected override void ProcessRecord()
+        {
+            WriteObject(ObsConnection.Instance.Connection.GetTransitionDuration());
         }
     }
 }

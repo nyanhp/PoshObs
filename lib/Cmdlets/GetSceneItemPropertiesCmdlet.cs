@@ -4,13 +4,15 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POGetSceneItemProperties")]
+    [Cmdlet(VerbsCommon.Get, "POSceneItemProperties")]
     public class GetSceneItemPropertiesCmdlet : Cmdlet
     {
-        [Parameter(Mandatory = true)]
-        public string itemName {get; set;}
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, ValueFromPipeline = true)]
+        [Alias("ItemName")]
+        public string Name {get; set;}
          [Parameter(Mandatory = true)]
-        public string sceneName {get; set;}
+        public string SceneName {get; set;}
+        public SwitchParameter AsJson { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -21,8 +23,18 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.GetSceneItemProperties();
+        protected override void ProcessRecord()
+        {
+            if (AsJson.IsPresent)
+            {
+                WriteObject(ObsConnection.Instance.Connection.GetSceneItemPropertiesJson(Name, SceneName));
+            }
+            else
+            {
+                WriteObject(ObsConnection.Instance.Connection.GetSceneItemProperties(Name, SceneName));
+            }
         }
     }
 }

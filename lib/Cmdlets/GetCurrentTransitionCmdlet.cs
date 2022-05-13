@@ -4,10 +4,9 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POGetCurrentTransition")]
+    [Cmdlet(VerbsCommon.Get, "POCurrentTransition")]
     public class GetCurrentTransitionCmdlet : Cmdlet
     {
-
         protected override void BeginProcessing()
         {
             if (!ObsConnection.Instance.Connection.IsConnected)
@@ -17,8 +16,11 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.GetCurrentTransition();
+        protected override void ProcessRecord()
+        {
+            WriteObject(ObsConnection.Instance.Connection.GetCurrentTransition());
         }
     }
 }

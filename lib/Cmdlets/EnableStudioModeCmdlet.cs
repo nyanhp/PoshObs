@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POEnableStudioMode")]
+    [Cmdlet(VerbsLifecycle.Enable, "POStudioMode")]
     public class EnableStudioModeCmdlet : Cmdlet
     {
 

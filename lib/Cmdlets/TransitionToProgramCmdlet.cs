@@ -7,10 +7,10 @@ namespace PoshObsNet.Cmdlets
     [Cmdlet(VerbsLifecycle.Start, "POTransitionToProgram")]
     public class TransitionToProgramCmdlet : Cmdlet
     {
-        [Parameter(Mandatory = true)]
-        public int transitionDuration {get; set;}
-         [Parameter(Mandatory = true)]
-        public string transitionName {get; set;}
+        [Parameter()]
+        public TimeSpan Duration { get; set; }
+        [Parameter()]
+        public string Name { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -22,7 +22,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.TransitionToProgram();
+            ObsConnection.Instance.Connection.TransitionToProgram((int)Duration.TotalMilliseconds, Name);
         }
     }
 }

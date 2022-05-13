@@ -4,11 +4,11 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POSetCurrentScene")]
+    [Cmdlet(VerbsCommon.Set, "POCurrentScene")]
     public class SetCurrentSceneCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string sceneName {get; set;}
+        public string Name {get; set;}
 
         protected override void BeginProcessing()
         {
@@ -20,7 +20,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetCurrentScene();
+            ObsConnection.Instance.Connection.SetCurrentScene(Name);
         }
     }
 }

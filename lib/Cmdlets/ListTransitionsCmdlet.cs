@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POListTransitions")]
+    [Cmdlet(VerbsCommon.Get, "POTransition")]
     public class ListTransitionsCmdlet : Cmdlet
     {
 
@@ -17,8 +17,11 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.ListTransitions();
+        protected override void ProcessRecord()
+        {
+            WriteObject(ObsConnection.Instance.Connection.ListTransitions());
         }
     }
 }

@@ -1,16 +1,17 @@
 using System;
+using System.Collections;
 using System.Management.Automation;
 using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POSetTransitionSettings")]
+    [Cmdlet(VerbsCommon.Set, "POTransitionSettings")]
     public class SetTransitionSettingsCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string transitionName {get; set;}
-         [Parameter(Mandatory = true)]
-        public Newtonsoft.Json.Linq.JObject transitionSettings {get; set;}
+        public string Name { get; set; }
+        [Parameter(Mandatory = true)]
+        public Hashtable Settings { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -22,7 +23,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetTransitionSettings();
+            ObsConnection.Instance.Connection.SetTransitionSettings(Name, Newtonsoft.Json.Linq.JObject.FromObject(Settings));
         }
     }
 }

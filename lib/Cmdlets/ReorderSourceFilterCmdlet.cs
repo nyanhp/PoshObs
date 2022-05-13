@@ -4,15 +4,15 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POReorderSourceFilter")]
+    [Cmdlet(VerbsCommon.Set, "POSourceFilterOrder")]
     public class ReorderSourceFilterCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string sourceName {get; set;}
-         [Parameter(Mandatory = true)]
-        public string filterName {get; set;}
-         [Parameter(Mandatory = true)]
-        public int newIndex {get; set;}
+        public string SourceName { get; set; }
+        [Parameter(Mandatory = true)]
+        public string FilterName { get; set; }
+        [Parameter(Mandatory = true)]
+        public int NewIndex { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -24,7 +24,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.ReorderSourceFilter();
+            ObsConnection.Instance.Connection.ReorderSourceFilter(SourceName, FilterName, NewIndex);
         }
     }
 }

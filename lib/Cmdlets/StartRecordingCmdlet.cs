@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POStartRecording")]
+    [Cmdlet(VerbsLifecycle.Start, "PORecording")]
     public class StartRecordingCmdlet : Cmdlet
     {
 

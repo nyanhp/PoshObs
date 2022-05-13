@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POGetCurrentSceneCollection")]
+    [Cmdlet(VerbsCommon.Get, "POCurrentSceneCollection")]
     public class GetCurrentSceneCollectionCmdlet : Cmdlet
     {
 
@@ -17,8 +17,11 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.GetCurrentSceneCollection();
+        protected override void ProcessRecord()
+        {
+            WriteObject(ObsConnection.Instance.Connection.GetCurrentSceneCollection());
         }
     }
 }

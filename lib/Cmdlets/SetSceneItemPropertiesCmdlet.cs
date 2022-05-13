@@ -1,16 +1,17 @@
 using System;
 using System.Management.Automation;
+using OBSWebsocketDotNet.Types;
 using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POSetSceneItemProperties")]
+    [Cmdlet(VerbsCommon.Set, "POSceneItemProperties")]
     public class SetSceneItemPropertiesCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public Newtonsoft.Json.Linq.JObject obj {get; set;}
-         [Parameter(Mandatory = true)]
-        public string sceneName {get; set;}
+        public string Name { get; set; }
+        [Parameter(Mandatory = true)]
+        SceneItemProperties Properties { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -22,7 +23,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetSceneItemProperties();
+            ObsConnection.Instance.Connection.SetSceneItemProperties(Properties, Name);
         }
     }
 }

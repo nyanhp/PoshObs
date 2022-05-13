@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POGetSourcesList")]
+    [Cmdlet(VerbsCommon.Get, "POSource")]
     public class GetSourcesListCmdlet : Cmdlet
     {
 
@@ -17,7 +17,10 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
+        protected override void ProcessRecord()
+        {
             WriteObject(ObsConnection.Instance.Connection.GetSourcesList());
         }
     }

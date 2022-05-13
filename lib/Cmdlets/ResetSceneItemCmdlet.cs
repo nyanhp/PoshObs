@@ -4,13 +4,13 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POResetSceneItem")]
+    [Cmdlet(VerbsCommon.Reset, "POSceneItem")]
     public class ResetSceneItemCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string itemName {get; set;}
-         [Parameter(Mandatory = true)]
-        public string sceneName {get; set;}
+        public string Name { get; set; }
+        [Parameter(Mandatory = true)]
+        public string SceneName { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -22,7 +22,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.ResetSceneItem();
+            ObsConnection.Instance.Connection.ResetSceneItem(Name, SceneName);
         }
     }
 }

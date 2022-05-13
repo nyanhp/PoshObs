@@ -4,13 +4,13 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POGetSourceSettings")]
+    [Cmdlet(VerbsCommon.Get, "POSourceSettings")]
     public class GetSourceSettingsCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string sourceName {get; set;}
-         [Parameter(Mandatory = true)]
-        public string sourceType {get; set;}
+        public string Name { get; set; }
+        [Parameter(Mandatory = true)]
+        public string Type { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -21,8 +21,12 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.GetSourceSettings();
+        protected override void ProcessRecord()
+        {
+
+            WriteObject(ObsConnection.Instance.Connection.GetSourceSettings(Name, Type));
         }
     }
 }

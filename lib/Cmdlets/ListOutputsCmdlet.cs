@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POListOutputs")]
+    [Cmdlet(VerbsCommon.Get, "POOutput")]
     public class ListOutputsCmdlet : Cmdlet
     {
 
@@ -17,8 +17,12 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.ListOutputs();
+        protected override void ProcessRecord()
+        {
+            WriteObject(ObsConnection.Instance.Connection.ListOutputs());
+
         }
     }
 }

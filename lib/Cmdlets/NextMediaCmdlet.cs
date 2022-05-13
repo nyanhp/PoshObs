@@ -8,7 +8,7 @@ namespace PoshObsNet.Cmdlets
     public class NextMediaCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string sourceName {get; set;}
+        public string Name { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -20,7 +20,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.NextMedia();
+            ObsConnection.Instance.Connection.NextMedia(Name);
         }
     }
 }

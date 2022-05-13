@@ -4,15 +4,15 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POSetSourceRender")]
+    [Cmdlet(VerbsCommon.Set, "POSourceRender")]
     public class SetSourceRenderCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string itemName {get; set;}
-         [Parameter(Mandatory = true)]
-        public bool visible {get; set;}
-         [Parameter(Mandatory = true)]
-        public string sceneName {get; set;}
+        public string ItemName { get; set; }
+        [Parameter(Mandatory = true)]
+        public bool Visible { get; set; }
+        [Parameter(Mandatory = true)]
+        public string SceneName { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -24,7 +24,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetSourceRender();
+            ObsConnection.Instance.Connection.SetSourceRender(ItemName, Visible, SceneName);
         }
     }
 }

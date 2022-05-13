@@ -4,11 +4,11 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POGetSceneTransitionOverride")]
+    [Cmdlet(VerbsCommon.Get, "POSceneTransitionOverride")]
     public class GetSceneTransitionOverrideCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string sceneName {get; set;}
+        public string Name {get; set;}
 
         protected override void BeginProcessing()
         {
@@ -19,8 +19,11 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.GetSceneTransitionOverride();
+        protected override void ProcessRecord()
+        {
+            WriteObject(ObsConnection.Instance.Connection.GetSceneTransitionOverride(Name));
         }
     }
 }

@@ -4,7 +4,7 @@ using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Start, "POListProfiles")]
+    [Cmdlet(VerbsCommon.Get, "POProfile")]
     public class ListProfilesCmdlet : Cmdlet
     {
 
@@ -17,8 +17,11 @@ namespace PoshObsNet.Cmdlets
                 WriteError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.ListProfiles();
+        protected override void ProcessRecord()
+        {
+            WriteObject(ObsConnection.Instance.Connection.ListProfiles());
         }
     }
 }
