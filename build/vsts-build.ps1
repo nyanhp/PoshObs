@@ -38,28 +38,6 @@ Write-Host "Creating and populating publishing directory"
 $publishDir = New-Item -Path $WorkingDirectory -Name publish -ItemType Directory -Force
 Copy-Item -Path "$($WorkingDirectory)\PoshObs" -Destination $publishDir.FullName -Recurse -Force
 
-#region Gather text data to compile
-$text = @()
-
-# Gather commands
-Get-ChildItem -Path "$($publishDir.FullName)\PoshObs\internal\functions\" -Recurse -File -Filter "*.ps1" | ForEach-Object {
-	$text += [System.IO.File]::ReadAllText($_.FullName)
-}
-Get-ChildItem -Path "$($publishDir.FullName)\PoshObs\functions\" -Recurse -File -Filter "*.ps1" | ForEach-Object {
-	$text += [System.IO.File]::ReadAllText($_.FullName)
-}
-
-# Gather scripts
-Get-ChildItem -Path "$($publishDir.FullName)\PoshObs\internal\scripts\" -Recurse -File -Filter "*.ps1" | ForEach-Object {
-	$text += [System.IO.File]::ReadAllText($_.FullName)
-}
-
-#region Update the psm1 file & Cleanup
-[System.IO.File]::WriteAllText("$($publishDir.FullName)\PoshObs\PoshObs.psm1", ($text -join "`n`n"), [System.Text.Encoding]::UTF8)
-Remove-Item -Path "$($publishDir.FullName)\PoshObs\internal" -Recurse -Force
-Remove-Item -Path "$($publishDir.FullName)\PoshObs\functions" -Recurse -Force
-#endregion Update the psm1 file & Cleanup
-
 #region Updating the Module Version
 if ($AutoVersion)
 {

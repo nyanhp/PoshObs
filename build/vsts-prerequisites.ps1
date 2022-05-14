@@ -23,3 +23,6 @@ foreach ($module in $modules) {
     Install-Module $module -Force -SkipPublisherCheck -Repository $Repository
     Import-Module $module -Force -PassThru
 }
+
+dotnet build "$PSScriptRoot\..\lib\PoshObsNet.csproj"
+dotnet publish "$PSScriptRoot\..\lib\PoshObsNet.csproj" -o "$PSScriptRoot\..\PoshObs"
