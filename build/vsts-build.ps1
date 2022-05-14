@@ -37,12 +37,13 @@ if (-not $WorkingDirectory) { $WorkingDirectory = Split-Path $PSScriptRoot }
 Write-Host "Creating and populating publishing directory"
 $publishDir = New-Item -Path $WorkingDirectory -Name publish -ItemType Directory -Force
 Copy-Item -Path "$($WorkingDirectory)\PoshObs" -Destination $publishDir.FullName -Recurse -Force
+$theModule = Import-PowerShellDataFile -Path "$($publishDir.FullName)\PoshObs\PoshObs.psd1"
 
 #region Updating the Module Version
 if ($AutoVersion)
 {
 	Write-Host  "Updating module version numbers."
-	try { [version]$remoteVersion = (Find-Module 'PoshObs' -Repository $Repository -ErrorAction Stop).Version }
+	try { [version]$remoteVersion = (Find-Module 'PoshObs' -Repository $Repository -ErrorAction Stop -AllowPrerelease:$(-not [string]::IsNullOrWhiteSpace($theModule.PrivateData.PSData.Prerelease))).Version -replace '-\w+' }
 	catch
 	{
 		throw "Failed to access $($Repository) : $_"
@@ -52,7 +53,7 @@ if ($AutoVersion)
 		throw "Couldn't find PoshObs on repository $($Repository) : $_"
 	}
 	$newBuildNumber = $remoteVersion.Build + 1
-	[version]$localVersion = (Import-PowerShellDataFile -Path "$($publishDir.FullName)\PoshObs\PoshObs.psd1").ModuleVersion
+	[version]$localVersion = $theModule.ModuleVersion
 	Update-ModuleManifest -Path "$($publishDir.FullName)\PoshObs\PoshObs.psd1" -ModuleVersion "$($localVersion.Major).$($localVersion.Minor).$($newBuildNumber)"
 }
 #endregion Updating the Module Version
