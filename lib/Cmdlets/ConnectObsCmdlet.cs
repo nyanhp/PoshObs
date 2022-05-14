@@ -22,7 +22,7 @@ namespace PoshObsNet.Cmdlets
             catch (Exception obsExc)
             {
                 var record = new ErrorRecord(obsExc, "ObsWebSocketConnectError", ErrorCategory.ConnectionError, ObsConnection.Instance);
-                WriteError(record);
+                ThrowTerminatingError(record);
                 return;
             }
 
@@ -30,7 +30,7 @@ namespace PoshObsNet.Cmdlets
             {
                 var exception = new System.Net.Http.HttpRequestException($"Unable to connect to {Uri}.");
                 var record = new ErrorRecord(exception, "ObsWebSocketConnectError", ErrorCategory.ConnectionError, ObsConnection.Instance);
-                WriteError(record);
+                ThrowTerminatingError(record);
             }
         }
     }

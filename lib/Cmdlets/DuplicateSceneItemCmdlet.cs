@@ -22,7 +22,7 @@ namespace PoshObsNet.Cmdlets
             {
                 var exception = new System.Net.Http.HttpRequestException($"OBS WebSocket not connected");
                 var record = new ErrorRecord(exception, "ObsWebSocketConnectError", ErrorCategory.ConnectionError, ObsConnection.Instance);
-                WriteError(record);
+                ThrowTerminatingError(record);
                 return;
             }
 
