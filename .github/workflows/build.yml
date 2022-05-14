@@ -1,5 +1,8 @@
 ﻿on:
   push:
+    paths-ignore:
+      - 'readme.md'
+      - '.gitignore'
     branches:
       - main
 
