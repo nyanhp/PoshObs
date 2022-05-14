@@ -52,7 +52,7 @@ $CommandPath = @(
     "$global:testroot\..\PoshObs\internal\functions"
 )
 
-$includedNames = foreach ($path in $CommandPath) { (Get-ChildItem $path -Recurse -File | Where-Object Name -like "*.ps1").BaseName }
+$includedNames = foreach ($path in $CommandPath) { (Get-ChildItem $path -Recurse -File -ErrorAction SilentlyContinue | Where-Object Name -like "*.ps1").BaseName }
 $commandTypes = @('Cmdlet', 'Function')
 if ($PSVersionTable.PSEdition -eq 'Desktop' ) { $commandTypes += 'Workflow' }
 $commands = Get-Command -Module (Get-Module $ModuleName) -CommandType $commandTypes | Where-Object Name -In $includedNames

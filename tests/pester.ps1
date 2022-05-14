@@ -21,7 +21,6 @@ $global:__pester_data = @{ }
 
 Remove-Module PoshObs -ErrorAction Ignore
 Import-Module "$PSScriptRoot\..\PoshObs\PoshObs.psd1"
-Import-Module "$PSScriptRoot\..\PoshObs\PoshObs.psm1" -Force
 
 # Need to import explicitly so we can use the configuration class
 Import-Module Pester
