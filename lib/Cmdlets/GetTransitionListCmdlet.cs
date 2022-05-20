@@ -22,11 +22,16 @@ namespace PoshObsNet.Cmdlets
 
         protected override void ProcessRecord()
         {
+            
             if (NameOnly.IsPresent)
             {
-                WriteObject(ObsConnection.Instance.Connection.ListTransitions());
+                foreach (var trans in ObsConnection.Instance.Connection.ListTransitions())
+                {
+                    WriteObject(trans);
+                }
                 return;
             }
+
             WriteObject(ObsConnection.Instance.Connection.GetTransitionList());
         }
     }

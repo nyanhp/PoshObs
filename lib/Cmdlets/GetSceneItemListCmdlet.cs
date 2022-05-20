@@ -23,7 +23,10 @@ namespace PoshObsNet.Cmdlets
 
         protected override void ProcessRecord()
         {
-            WriteObject(ObsConnection.Instance.Connection.GetSceneItemList(Name));
+            foreach (var scene in ObsConnection.Instance.Connection.GetSceneItemList(Name))
+            {
+                WriteObject(scene);
+            }
         }
     }
 }

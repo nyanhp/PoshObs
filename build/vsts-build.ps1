@@ -39,6 +39,13 @@ $publishDir = New-Item -Path $WorkingDirectory -Name publish -ItemType Directory
 Copy-Item -Path "$($WorkingDirectory)\PoshObs" -Destination $publishDir.FullName -Recurse -Force
 $theModule = Import-PowerShellDataFile -Path "$($publishDir.FullName)\PoshObs\PoshObs.psd1"
 
+# Generate Help
+$helpBase = Join-Path -Path $WorkingDirectory -ChildPath help
+foreach ($language in (Get-ChildItem -Directory -Path $helpBase))
+{
+	New-ExternalHelp -Path $language.FullName -OutputPath "$($publishDir.FullName)\PoshObs\$($language.BaseName)"
+}
+
 #region Updating the Module Version
 if ($AutoVersion)
 {
