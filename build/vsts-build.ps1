@@ -81,7 +81,7 @@ if ($AutoVersion)
 		[version]$localVersion = $theModule.ModuleVersion
 		$parameter['ModuleVersion'] = "$($localVersion.Major).$($localVersion.Minor).$($newBuildNumber)"
 	}
-	Update-ModuleManifest @param
+	Update-ModuleManifest @parameter
 }
 #endregion Updating the Module Version
 
