@@ -12,6 +12,9 @@ param (
 	$Repository = 'PSGallery',
 	
 	[switch]
+	$IncludeGitHubRelease,
+	
+	[switch]
 	$LocalRepo,
 	
 	[switch]
@@ -50,7 +53,7 @@ foreach ($language in (Get-ChildItem -Directory -Path $helpBase))
 if ($AutoVersion)
 {
 	Write-Host  "Updating module version numbers."
-	try { [version]$remoteVersion = (Find-Module 'PoshObs' -Repository $Repository -ErrorAction Stop -AllowPrerelease:$(-not [string]::IsNullOrWhiteSpace($theModule.PrivateData.PSData.Prerelease))).Version -replace '-\w+' }
+	try { $remoteVersion = (Find-Module 'PoshObs' -Repository $Repository -ErrorAction Stop -AllowPrerelease:$(-not [string]::IsNullOrWhiteSpace($theModule.PrivateData.PSData.Prerelease))).Version }
 	catch
 	{
 		throw "Failed to access $($Repository) : $_"
@@ -59,9 +62,26 @@ if ($AutoVersion)
 	{
 		throw "Couldn't find PoshObs on repository $($Repository) : $_"
 	}
-	$newBuildNumber = $remoteVersion.Build + 1
-	[version]$localVersion = $theModule.ModuleVersion
-	Update-ModuleManifest -Path "$($publishDir.FullName)\PoshObs\PoshObs.psd1" -ModuleVersion "$($localVersion.Major).$($localVersion.Minor).$($newBuildNumber)"
+
+	$parameter = @{
+		Path = "$($publishDir.FullName)\PoshObs\PoshObs.psd1"
+	}
+
+	[Version]$remoteModuleVersion = $remoteVersion -replace '-\w+'
+	[string]$prerelease = $remoteVersion -replace '[\d\.]+-'
+	if ($prerelease)
+	{
+		$null = $prerelease -match '\d+'
+		$number = [int]$Matches.0 + 1
+		$parameter['Prerelease'] = $prerelease -replace '\d', $number
+	}
+	else
+	{
+		$newBuildNumber = $remoteModuleVersion.Build + 1
+		[version]$localVersion = $theModule.ModuleVersion
+		$parameter['ModuleVersion'] = "$($localVersion.Major).$($localVersion.Minor).$($newBuildNumber)"
+	}
+	Update-ModuleManifest @param
 }
 #endregion Updating the Module Version
 
@@ -80,5 +100,11 @@ else
 	# Publish to Gallery
 	Write-Host  "Publishing the PoshObs module to $($Repository)"
 	Publish-Module -Path "$($publishDir.FullName)\PoshObs" -NuGetApiKey $ApiKey -Force -Repository $Repository
+}
+
+if ($IncludeGitHubRelease)
+{
+	Write-Host  "Creating Nuget Package for module: PoshObs"
+	New-PSMDModuleNugetPackage -ModulePath "$($publishDir.FullName)\PoshObs" -PackagePath .
 }
 #endregion Publish

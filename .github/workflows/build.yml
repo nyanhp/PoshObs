@@ -20,7 +20,15 @@ jobs:
       run: .\build\vsts-validate.ps1
       shell: powershell
     - name: Build
-      run: .\build\vsts-build.ps1 -ApiKey $env:APIKEY
+      run: .\build\vsts-build.ps1 -ApiKey $env:APIKEY -IncludeGitHubRelease
       shell: powershell
       env:
         APIKEY: ${{ secrets.ApiKey }}
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: true
+        title: "Development Build"
+        files: |
+          *.nupkg

@@ -3,7 +3,7 @@
     $Repository = 'PSGallery'
 )
 
-$modules = @("Pester", "PSScriptAnalyzer", 'PlatyPs')
+$modules = @("Pester", "PSScriptAnalyzer", 'PlatyPs', 'PSModuleDevelopment')
 
 # Automatically add missing dependencies
 $data = Import-PowerShellDataFile -Path "$PSScriptRoot\..\PoshObs\PoshObs.psd1"
