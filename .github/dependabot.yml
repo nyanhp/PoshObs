@@ -9,6 +9,7 @@ updates:
     directory: "/lib" # Location of package manifests
     schedule:
       interval: "daily"
-    assignees: "nyanhp"
+    assignees:
+      - "nyanhp"
     commit-message:
       prefix: "NuGet"
