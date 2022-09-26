@@ -48,8 +48,15 @@
     # Assemblies that must be loaded prior to importing this module
     RequiredAssemblies = @(
         'Newtonsoft.Json.dll'
-        'websocket-sharp.dll'
         'obs-websocket-dotnet.dll'
+        'PoshObsNet.dll'
+        'System.Management.Automation.dll'
+        'System.Reactive.dll'
+        'System.Runtime.CompilerServices.Unsafe.dll'
+        'System.Runtime.InteropServices.WindowsRuntime.dll'
+        'System.Threading.Channels.dll'
+        'System.Threading.Tasks.Extensions.dll'
+        'Websocket.Client.dll'
     )
 
     # Script files (.ps1) that are run in the caller's environment prior to importing this module.
@@ -88,11 +95,6 @@
         'Get-POCurrentSceneCollection',
         'Get-POCurrentTransition',
         'Get-POFilenameFormatting',
-        'Get-POMediaDuration',
-        'Get-POMediaSource',
-        'Get-POMediaSourceSettings',
-        'Get-POMediaState',
-        'Get-POMediaTime',
         'Get-POMute',
         'Get-POOutput',
         'Get-POPreviewScene',
@@ -135,7 +137,6 @@
         'Remove-POSceneItem',
         'Remove-POSceneTransitionOverride',
         'Reset-POSceneItem',
-        'Restart-POMedia',
         'Save-POReplayBuffer',
         'Save-POSourceScreenshot',
         'Save-POStreamSettings',
@@ -145,8 +146,6 @@
         'Set-POCurrentSceneCollection',
         'Set-POCurrentTransition',
         'Set-POFilenameFormatting',
-        'Set-POMediaSourceSettings',
-        'Set-POMediaTime',
         'Set-POPreviewScene',
         'Set-PORecordingFolder',
         'Set-POSceneItemOrder',
@@ -164,7 +163,6 @@
         'Set-POTransitionDuration',
         'Set-POTransitionSettings',
         'Set-POVolume',
-        'Start-POMedia',
         'Start-PONextMedia',
         'Start-POPreviousMedia',
         'Start-PORecording',
@@ -173,12 +171,10 @@
         'Start-POStreaming',
         'Start-POTransitionToProgram',
         'Start-POVirtualCam',
-        'Stop-POMedia',
         'Stop-PORecording',
         'Stop-POReplayBuffer',
         'Stop-POStreaming',
         'Stop-POVirtualCam',
-        'Suspend-POMedia',
         'Suspend-PORecording',
         'Update-POBrowserSource'
     )
