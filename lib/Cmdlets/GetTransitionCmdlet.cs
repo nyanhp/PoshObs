@@ -8,7 +8,6 @@ namespace PoshObsNet.Cmdlets
     [Cmdlet(VerbsCommon.Get, "POTransition")]
     public class GetTransitionCmdlet : Cmdlet
     {
-        [Parameter(Mandatory = true)]
         public string Name { get; set; }
 
         protected override void BeginProcessing()
@@ -24,8 +23,11 @@ namespace PoshObsNet.Cmdlets
 
         protected override void ProcessRecord()
         {
-            var transition = ObsConnection.Instance.Connection.GetSceneTransitionList().Transitions.First(trans => trans.Name.Equals(Name));
-            WriteObject(transition);
+            foreach (var transition in ObsConnection.Instance.Connection.GetSceneTransitionList().Transitions)
+            {
+                if (! string.IsNullOrWhiteSpace(Name) && ! transition.Name.Equals(Name)) { continue; }
+                WriteObject(transition);
+            }
         }
     }
 }
