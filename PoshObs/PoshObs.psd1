@@ -50,7 +50,6 @@
         'Newtonsoft.Json.dll'
         'obs-websocket-dotnet.dll'
         'PoshObsNet.dll'
-        'System.Management.Automation.dll'
         'System.Reactive.dll'
         'System.Runtime.CompilerServices.Unsafe.dll'
         'System.Runtime.InteropServices.WindowsRuntime.dll'
