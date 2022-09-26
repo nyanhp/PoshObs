@@ -20,7 +20,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetCurrentTransition(Name);
+            ObsConnection.Instance.Connection.SetCurrentSceneTransition(Name);
         }
     }
 }

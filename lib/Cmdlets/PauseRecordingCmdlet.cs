@@ -18,7 +18,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.PauseRecording();
+            ObsConnection.Instance.Connection.PauseRecord();
         }
     }
 }

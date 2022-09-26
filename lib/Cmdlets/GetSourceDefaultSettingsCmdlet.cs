@@ -23,7 +23,7 @@ namespace PoshObsNet.Cmdlets
 
         protected override void ProcessRecord()
         {
-            WriteObject(ObsConnection.Instance.Connection.GetSourceDefaultSettings(Kind));
+            WriteObject(ObsConnection.Instance.Connection.GetSourceFilterDefaultSettings(Kind));
         }
     }
 }

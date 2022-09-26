@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Management.Automation;
 using PoshObsNet.Data;
 
@@ -23,7 +24,8 @@ namespace PoshObsNet.Cmdlets
 
         protected override void ProcessRecord()
         {
-            WriteObject(ObsConnection.Instance.Connection.GetTransitionSettings(Name));
+            var transition = ObsConnection.Instance.Connection.GetSceneTransitionList().Transitions.First(trans => trans.Name.Equals(Name));
+            WriteObject(transition.Settings);
         }
     }
 }

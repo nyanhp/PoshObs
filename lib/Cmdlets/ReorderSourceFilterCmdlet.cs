@@ -24,7 +24,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.ReorderSourceFilter(SourceName, FilterName, NewIndex);
+            ObsConnection.Instance.Connection.SetSourceFilterIndex(SourceName, FilterName, NewIndex);
         }
     }
 }

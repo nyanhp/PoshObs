@@ -22,7 +22,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.RemoveFilterFromSource(Name, FilterName);
+            ObsConnection.Instance.Connection.RemoveSourceFilter(Name, FilterName);
         }
     }
 }

@@ -21,11 +21,11 @@ namespace PoshObsNet.Data
         {
             if (credential == null)
             {
-                Connection.Connect(uri, String.Empty);
+                Connection.ConnectAsync(uri, String.Empty);
                 return;
             }
 
-            Connection.Connect(uri, credential.GetNetworkCredential().Password);
+            Connection.ConnectAsync(uri, credential.GetNetworkCredential().Password);
         }
     }
 }

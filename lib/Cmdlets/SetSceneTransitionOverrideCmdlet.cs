@@ -24,7 +24,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetSceneTransitionOverride(Name, TransitionName, TransitionDuration);
+            ObsConnection.Instance.Connection.SetSceneSceneTransitionOverride(Name, TransitionName, TransitionDuration);
         }
     }
 }

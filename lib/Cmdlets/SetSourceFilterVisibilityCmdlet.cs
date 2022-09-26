@@ -24,7 +24,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetSourceFilterVisibility(Name, FilterName, FilterEnabled.IsPresent);
+            ObsConnection.Instance.Connection.SetSourceFilterEnabled(Name, FilterName, FilterEnabled.IsPresent);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace PoshObsNet.Cmdlets
         protected override void ProcessRecord()
         {
 
-            WriteObject(ObsConnection.Instance.Connection.GetRecordingStatus());
+            WriteObject(ObsConnection.Instance.Connection.GetRecordStatus());
         }
     }
 }

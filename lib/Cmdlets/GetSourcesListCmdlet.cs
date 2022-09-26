@@ -21,7 +21,7 @@ namespace PoshObsNet.Cmdlets
 
         protected override void ProcessRecord()
         {
-            foreach (var source in ObsConnection.Instance.Connection.GetSourcesList())
+            foreach (var source in ObsConnection.Instance.Connection.GetInputList())
             {
                 WriteObject(source);
             }

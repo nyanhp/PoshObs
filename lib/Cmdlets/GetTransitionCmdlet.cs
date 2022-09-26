@@ -1,14 +1,15 @@
 using System;
+using System.Linq;
 using System.Management.Automation;
 using PoshObsNet.Data;
 
 namespace PoshObsNet.Cmdlets
 {
-    [Cmdlet(VerbsLifecycle.Stop, "POMedia")]
-    public class StopMediaCmdlet : Cmdlet
+    [Cmdlet(VerbsCommon.Get, "POTransition")]
+    public class GetTransitionCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string Name {get; set;}
+        public string Name { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -19,8 +20,12 @@ namespace PoshObsNet.Cmdlets
                 ThrowTerminatingError(record);
                 return;
             }
+        }
 
-            ObsConnection.Instance.Connection.StopMedia(Name);
+        protected override void ProcessRecord()
+        {
+            var transition = ObsConnection.Instance.Connection.GetSceneTransitionList().Transitions.First(trans => trans.Name.Equals(Name));
+            WriteObject(transition);
         }
     }
 }

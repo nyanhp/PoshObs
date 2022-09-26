@@ -24,7 +24,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.AddSceneItem(Name, SourceName, Visible);
+            ObsConnection.Instance.Connection.CreateSceneItem(Name, SourceName, Visible);
         }
     }
 }

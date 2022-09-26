@@ -17,7 +17,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.DisableStudioMode();
+            ObsConnection.Instance.Connection.SetStudioModeEnabled(false);
         }
     }
 }

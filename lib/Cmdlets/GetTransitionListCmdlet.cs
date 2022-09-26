@@ -7,8 +7,6 @@ namespace PoshObsNet.Cmdlets
     [Cmdlet(VerbsCommon.Get, "POTransition")]
     public class GetTransitionListCmdlet : Cmdlet
     {
-        [Parameter()]
-        public SwitchParameter NameOnly {get; set;}
         protected override void BeginProcessing()
         {
             if (!ObsConnection.Instance.Connection.IsConnected)
@@ -22,17 +20,7 @@ namespace PoshObsNet.Cmdlets
 
         protected override void ProcessRecord()
         {
-            
-            if (NameOnly.IsPresent)
-            {
-                foreach (var trans in ObsConnection.Instance.Connection.ListTransitions())
-                {
-                    WriteObject(trans);
-                }
-                return;
-            }
-
-            WriteObject(ObsConnection.Instance.Connection.GetTransitionList());
+            WriteObject(ObsConnection.Instance.Connection.GetSceneTransitionList());
         }
     }
 }

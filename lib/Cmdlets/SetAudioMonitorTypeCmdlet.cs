@@ -22,7 +22,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetAudioMonitorType(Name, Type);
+            ObsConnection.Instance.Connection.SetInputAudioMonitorType(Name, Type);
         }
     }
 }

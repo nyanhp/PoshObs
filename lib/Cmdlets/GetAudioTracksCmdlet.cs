@@ -23,7 +23,7 @@ namespace PoshObsNet.Cmdlets
 
         protected override void ProcessRecord()
         {
-            WriteObject(ObsConnection.Instance.Connection.GetAudioTracks(Name));
+            WriteObject(ObsConnection.Instance.Connection.GetInputAudioTracks(Name));
         }
     }
 }

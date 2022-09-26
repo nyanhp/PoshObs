@@ -46,7 +46,7 @@ $theModule = Import-PowerShellDataFile -Path "$($publishDir.FullName)\PoshObs\Po
 $helpBase = Join-Path -Path $WorkingDirectory -ChildPath help
 foreach ($language in (Get-ChildItem -Directory -Path $helpBase))
 {
-	New-ExternalHelp -Path $language.FullName -OutputPath "$($publishDir.FullName)\PoshObs\$($language.BaseName)"
+	New-ExternalHelp -Path $language.FullName -OutputPath "$($publishDir.FullName)\PoshObs\$($language.BaseName)" -Force
 }
 
 #region Updating the Module Version

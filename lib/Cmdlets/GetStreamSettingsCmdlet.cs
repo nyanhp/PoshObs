@@ -21,7 +21,7 @@ namespace PoshObsNet.Cmdlets
 
         protected override void ProcessRecord()
         {
-            WriteObject(ObsConnection.Instance.Connection.GetStreamSettings());
+            WriteObject(ObsConnection.Instance.Connection.GetStreamServiceSettings());
         }
     }
 }

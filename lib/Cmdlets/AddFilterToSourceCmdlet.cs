@@ -27,7 +27,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.AddFilterToSource(SourceName, Name, Type, Newtonsoft.Json.Linq.JObject.FromObject(Settings));
+            ObsConnection.Instance.Connection.CreateSourceFilter(SourceName, Name, Type, Newtonsoft.Json.Linq.JObject.FromObject(Settings));
         }
     }
 }

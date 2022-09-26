@@ -22,8 +22,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetStreamingSettings(Service, Save.IsPresent);
-            ObsConnection.Instance.Connection.SetStreamSettings(Service, Save); // Docs say its the same
+            ObsConnection.Instance.Connection.SetStreamServiceSettings(Service);
         }
     }
 }

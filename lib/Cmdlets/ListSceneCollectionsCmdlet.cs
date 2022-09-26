@@ -21,7 +21,7 @@ namespace PoshObsNet.Cmdlets
 
         protected override void ProcessRecord()
         {
-            WriteObject(ObsConnection.Instance.Connection.ListSceneCollections());
+            WriteObject(ObsConnection.Instance.Connection.GetSceneCollectionList());
         }
     }
 }

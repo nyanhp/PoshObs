@@ -18,7 +18,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.GetCurrentProfile();
+            WriteObject(ObsConnection.Instance.Connection.GetProfileList().CurrentProfileName);
         }
     }
 }

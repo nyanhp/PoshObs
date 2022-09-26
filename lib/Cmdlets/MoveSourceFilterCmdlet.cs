@@ -12,7 +12,7 @@ namespace PoshObsNet.Cmdlets
         [Parameter(Mandatory = true)]
         public string FilterName { get; set; }
         [Parameter(Mandatory = true)]
-        public OBSWebsocketDotNet.Types.FilterMovementType MovementType { get; set; }
+        public int Index { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -24,7 +24,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.MoveSourceFilter(Name, FilterName, MovementType);
+            ObsConnection.Instance.Connection.SetSourceFilterIndex(Name, FilterName, Index);
         }
     }
 }
