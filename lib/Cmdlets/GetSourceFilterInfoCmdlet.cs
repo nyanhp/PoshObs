@@ -25,7 +25,7 @@ namespace PoshObsNet.Cmdlets
 
         protected override void ProcessRecord()
         {
-            WriteObject(ObsConnection.Instance.Connection.GetSourceFilterInfo(Name, FilterName));
+            WriteObject(ObsConnection.Instance.Connection.GetSourceFilter(Name, FilterName));
         }
     }
 }

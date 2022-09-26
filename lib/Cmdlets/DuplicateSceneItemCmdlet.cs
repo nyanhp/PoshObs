@@ -26,7 +26,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.DuplicateSceneItem(SourceSceneName,DestinationSceneName,ItemID);
+            ObsConnection.Instance.Connection.DuplicateSceneItem(SourceSceneName, ItemID, DestinationSceneName);
         }
     }
 }

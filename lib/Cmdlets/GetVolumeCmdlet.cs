@@ -8,9 +8,7 @@ namespace PoshObsNet.Cmdlets
     public class GetVolumeCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true)]
-        public string Name {get; set;}
-         [Parameter(Mandatory = true)]
-        public SwitchParameter UseDecibel {get; set;}
+        public string Name { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -25,7 +23,7 @@ namespace PoshObsNet.Cmdlets
 
         protected override void ProcessRecord()
         {
-            WriteObject(ObsConnection.Instance.Connection.GetVolume(Name, UseDecibel.IsPresent));
+            WriteObject(ObsConnection.Instance.Connection.GetInputVolume(Name));
         }
     }
 }

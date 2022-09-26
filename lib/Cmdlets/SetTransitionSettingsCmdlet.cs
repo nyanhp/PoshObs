@@ -23,7 +23,8 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetTransitionSettings(Name, Newtonsoft.Json.Linq.JObject.FromObject(Settings));
+            ObsConnection.Instance.Connection.SetCurrentProgramScene(Name);
+            ObsConnection.Instance.Connection.SetCurrentSceneTransitionSettings(Newtonsoft.Json.Linq.JObject.FromObject(Settings), false);
         }
     }
 }

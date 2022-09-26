@@ -22,7 +22,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.TransitionToProgram((int)Duration.TotalMilliseconds, Name);
+            ObsConnection.Instance.Connection.SetCurrentProgramScene(Name);
         }
     }
 }

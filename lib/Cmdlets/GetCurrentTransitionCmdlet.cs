@@ -20,7 +20,7 @@ namespace PoshObsNet.Cmdlets
 
         protected override void ProcessRecord()
         {
-            WriteObject(ObsConnection.Instance.Connection.GetCurrentTransition());
+            WriteObject(ObsConnection.Instance.Connection.GetCurrentSceneTransition());
         }
     }
 }

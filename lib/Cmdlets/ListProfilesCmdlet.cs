@@ -21,7 +21,7 @@ namespace PoshObsNet.Cmdlets
 
         protected override void ProcessRecord()
         {
-            WriteObject(ObsConnection.Instance.Connection.ListProfiles());
+            WriteObject(ObsConnection.Instance.Connection.GetProfileList());
         }
     }
 }

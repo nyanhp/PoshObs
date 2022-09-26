@@ -20,7 +20,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetCurrentScene(Name);
+            ObsConnection.Instance.Connection.SetCurrentProgramScene(Name);
         }
     }
 }

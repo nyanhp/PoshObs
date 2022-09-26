@@ -21,8 +21,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            var scene = ObsConnection.Instance.Connection.GetSceneList().Scenes.First(sc => sc.Name.Equals(Name));
-            ObsConnection.Instance.Connection.SetPreviewScene(scene);
+            ObsConnection.Instance.Connection.SetCurrentPreviewScene(Name);
         }
     }
 }

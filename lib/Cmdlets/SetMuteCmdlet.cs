@@ -20,7 +20,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetMute(Name, true);
+            ObsConnection.Instance.Connection.SetInputMute(Name, true);
         }
     }
 
@@ -40,7 +40,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetMute(Name, false);
+            ObsConnection.Instance.Connection.SetInputMute(Name, false);
         }
     }
 }

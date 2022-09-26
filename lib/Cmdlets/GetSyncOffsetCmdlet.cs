@@ -23,7 +23,7 @@ namespace PoshObsNet.Cmdlets
 
         protected override void ProcessRecord()
         {
-            WriteObject(ObsConnection.Instance.Connection.GetSyncOffset(Name));
+            WriteObject(ObsConnection.Instance.Connection.GetInputAudioSyncOffset(Name));
         }
     }
 }

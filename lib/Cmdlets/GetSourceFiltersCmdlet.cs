@@ -23,7 +23,7 @@ namespace PoshObsNet.Cmdlets
 
         protected override void ProcessRecord()
         {
-            foreach (var filter in ObsConnection.Instance.Connection.GetSourceFilters(Name))
+            foreach (var filter in ObsConnection.Instance.Connection.GetSourceFilterList(Name))
             {
                 WriteObject(filter);
             }

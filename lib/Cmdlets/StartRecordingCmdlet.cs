@@ -18,7 +18,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.StartRecording();
+            ObsConnection.Instance.Connection.StartRecord();
         }
     }
 }

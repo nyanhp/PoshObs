@@ -24,7 +24,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetVolume(Name, Volume, UseDecibel);
+            ObsConnection.Instance.Connection.SetInputVolume(Name, Volume, UseDecibel);
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Management.Automation;
 using PoshObsNet.Data;
 
@@ -9,10 +10,9 @@ namespace PoshObsNet.Cmdlets
     {
         [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, ValueFromPipeline = true)]
         [Alias("ItemName")]
-        public string Name {get; set;}
-         [Parameter(Mandatory = true)]
-        public string SceneName {get; set;}
-        public SwitchParameter AsJson { get; set; }
+        public string Name { get; set; }
+        [Parameter(Mandatory = true)]
+        public string SceneName { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -27,14 +27,7 @@ namespace PoshObsNet.Cmdlets
 
         protected override void ProcessRecord()
         {
-            if (AsJson.IsPresent)
-            {
-                WriteObject(ObsConnection.Instance.Connection.GetSceneItemPropertiesJson(Name, SceneName));
-            }
-            else
-            {
-                WriteObject(ObsConnection.Instance.Connection.GetSceneItemProperties(Name, SceneName));
-            }
+            WriteObject(ObsConnection.Instance.Connection.GetSceneItemList(SceneName).First(sc => sc.SourceName.Equals(Name)));
         }
     }
 }

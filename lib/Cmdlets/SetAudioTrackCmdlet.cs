@@ -22,7 +22,24 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetAudioTrack(Name, TrackNumber, true);
+            var tracks = ObsConnection.Instance.Connection.GetInputAudioTracks(Name);
+            switch (TrackNumber)
+            {
+                case 1: { tracks.IsTrack1Active = false; break; }
+                case 2: { tracks.IsTrack2Active = false; break; }
+                case 3: { tracks.IsTrack3Active = false; break; }
+                case 4: { tracks.IsTrack4Active = false; break; }
+                case 5: { tracks.IsTrack5Active = false; break; }
+                case 6: { tracks.IsTrack6Active = false; break; }
+                default:
+                    {
+
+                        var exception = new System.Net.Http.HttpRequestException($"No track number {TrackNumber} found for input {Name}");
+                        var record = new ErrorRecord(exception, "ObsWebSocketConnectError", ErrorCategory.InvalidArgument, ObsConnection.Instance);
+                        ThrowTerminatingError(record);
+                        return;
+                    }
+            }
         }
     }
 
@@ -44,7 +61,24 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetAudioTrack(Name, TrackNumber, false);
+            var tracks = ObsConnection.Instance.Connection.GetInputAudioTracks(Name);
+            switch (TrackNumber)
+            {
+                case 1: { tracks.IsTrack1Active = false; break; }
+                case 2: { tracks.IsTrack2Active = false; break; }
+                case 3: { tracks.IsTrack3Active = false; break; }
+                case 4: { tracks.IsTrack4Active = false; break; }
+                case 5: { tracks.IsTrack5Active = false; break; }
+                case 6: { tracks.IsTrack6Active = false; break; }
+                default:
+                    {
+
+                        var exception = new System.Net.Http.HttpRequestException($"No track number {TrackNumber} found for input {Name}");
+                        var record = new ErrorRecord(exception, "ObsWebSocketConnectError", ErrorCategory.InvalidArgument, ObsConnection.Instance);
+                        ThrowTerminatingError(record);
+                        return;
+                    }
+            }
         }
     }
 }

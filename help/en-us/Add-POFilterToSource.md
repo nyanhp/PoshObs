@@ -1,4 +1,4 @@
----
+﻿---
 external help file: PoshObs-Help.xml
 Module Name: poshobs
 online version:
@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-POFilterToSource
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Add a filter to a source (e.g. chromakey)
 
 ## SYNTAX
 
@@ -18,7 +18,8 @@ Add-POFilterToSource -SourceName <String> -Name <String> -Type <String> -Setting
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Add a filter to a source (e.g. chroma_key_filter_v2).
+Grab the TypeId with Get-POSourceType, give your filter a Name and off you go.
 
 ## EXAMPLES
 

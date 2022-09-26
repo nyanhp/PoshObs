@@ -22,7 +22,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.DeleteSceneItem(ItemId, SceneName);
+            ObsConnection.Instance.Connection.RemoveSceneItem(SceneName, ItemId);
         }
     }
 }

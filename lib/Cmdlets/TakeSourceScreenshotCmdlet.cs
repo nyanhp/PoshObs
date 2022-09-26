@@ -22,7 +22,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.TakeSourceScreenshot(Name, null, Path);
+            ObsConnection.Instance.Connection.SaveSourceScreenshot(Name, "png", Path);
         }
     }
 }

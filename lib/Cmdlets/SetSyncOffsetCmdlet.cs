@@ -22,7 +22,7 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
-            ObsConnection.Instance.Connection.SetSyncOffset(Name, Offset);
+            ObsConnection.Instance.Connection.SetInputAudioSyncOffset(Name, Offset);
         }
     }
 }

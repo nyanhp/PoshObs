@@ -23,7 +23,7 @@ namespace PoshObsNet.Cmdlets
 
         protected override void ProcessRecord()
         {
-            WriteObject(ObsConnection.Instance.Connection.GetMute(SourceName));
+            WriteObject(ObsConnection.Instance.Connection.GetInputMute(SourceName));
         }
     }
 }
