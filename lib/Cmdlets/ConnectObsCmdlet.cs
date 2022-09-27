@@ -26,6 +26,13 @@ namespace PoshObsNet.Cmdlets
                 return;
             }
 
+            // The alternative, waiting for an event, is not useful here
+            var start = DateTime.Now;
+            while (!ObsConnection.Instance.Connection.IsConnected && (DateTime.Now - start).TotalSeconds <= 10)
+            {
+                System.Threading.Thread.Sleep(100);
+            }
+
             if (!ObsConnection.Instance.Connection.IsConnected)
             {
                 var exception = new System.Net.Http.HttpRequestException($"Unable to connect to {Uri}.");
