@@ -73,7 +73,7 @@ if ($AutoVersion)
 	{
 		$null = $prerelease -match '\d+'
 		$number = [int]$Matches.0 + 1
-		$parameter['Prerelease'] = $prerelease -replace '\d', $number
+		$parameter['Prerelease'] = ($prerelease -replace '\d', '{0:d3}') -f $number
 	}
 	else
 	{
