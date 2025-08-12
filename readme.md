@@ -1,4 +1,6 @@
-﻿# PoshObs
+>ARCHIVED --> Use <https://github.com/StartAutomating/obs-powershell> instead.
+ 
+ # PoshObs
 
 This project wraps cmdlets around obs-websocket-dotnet to interact with OBS using PowerShell 5+.
 
